@@ -35,6 +35,6 @@ public class ProductsController {
 
         System.out.println(prod);
         service.addProduct(prod);
-        return "product added!";
+        return "product added!!";
     }
 }
