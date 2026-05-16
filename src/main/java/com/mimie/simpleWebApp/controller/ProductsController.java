@@ -3,9 +3,7 @@ package com.mimie.simpleWebApp.controller;
 import com.mimie.simpleWebApp.model.Product;
 import com.mimie.simpleWebApp.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 @RestController
@@ -14,14 +12,29 @@ public class ProductsController {
     @Autowired
     ProductService service;
 
-    @RequestMapping("/products")
+    //use requestmapping (only get) or specified annotation eg getmapping, postmapping
+
+    //get products
+    @GetMapping("/products")
     public List<Product> getProducts(){
 
         return service.getProducts();
     }
-@RequestMapping("/products/{prodId}")
+
+    //get prod by id
+@GetMapping("/products/{prodId}")
 //use pathvariable to match the prodid
     public Product getProductById(@PathVariable  int prodId){
         return service.getProductById(prodId);
+    }
+
+    //add product
+    @PostMapping("/products")
+    //use the @requestbody annotation
+    public String addProduct(@RequestBody Product prod){
+
+        System.out.println(prod);
+        service.addProduct(prod);
+        return "product added!";
     }
 }
