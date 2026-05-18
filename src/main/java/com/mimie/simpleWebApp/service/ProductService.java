@@ -41,7 +41,7 @@ public class ProductService {
 //                //.findFirst().get();
 //        .findFirst().orElse(new Product(0,"No item",0));
 
-        //returns an optional
+        //returns an optional so if not found create a new prod
         return repo.findById(prodId).orElse(new Product());
 
  }
